@@ -37,7 +37,7 @@ const style = StyleSheet.create({
   },
   title: { fontSize: 30, color: "#fff" },
   image: { height: 200, width: 200, borderRadius: 100 },
-  button: { backgroundColor: "blue", padding: 7, marginTop: 10 },
+  button: { backgroundColor: "deepskyblue", padding: 7, marginTop: 10 },
   buttonText: { color: "#fff", fontSize: 20 },
 });
 
