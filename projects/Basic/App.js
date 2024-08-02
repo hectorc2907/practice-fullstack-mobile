@@ -8,6 +8,7 @@ import {
   Alert,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
+import * as Sharing from "expo-sharing";
 
 const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -21,7 +22,7 @@ const App = () => {
     }
 
     const pickerResult = await ImagePicker.launchImageLibraryAsync();
-console.log(pickerResult)
+    console.log(pickerResult);
     if (pickerResult.canceled === true) {
       return;
     }
@@ -29,21 +30,36 @@ console.log(pickerResult)
     setSelectedImage({ localUri: pickerResult.assets[0].uri });
   };
 
+  const openShareDialog = async () => {
+    if (!(await Sharing.isAvailableAsync())) {
+      alert("Sharing is not available on your platform");
+      return;
+    }
+
+    await Sharing.shareAsync(selectedImage.localUri);
+  };
+
   return (
     <View style={style.container}>
       <Text style={style.title}>Hello World!!</Text>
-      <Image
-        source={{
-          uri:
-            selectedImage !== null
-              ? selectedImage.localUri
-              : "https://picsum.photos/200/200",
-        }}
-        style={style.image}
-      />
-      <TouchableOpacity onPress={openImagePickerAsync} style={style.button}>
-        <Text style={style.buttonText}>Press Me</Text>
+      <TouchableOpacity onPress={openImagePickerAsync}>
+        <Image
+          source={{
+            uri:
+              selectedImage !== null
+                ? selectedImage.localUri
+                : "https://picsum.photos/200/200",
+          }}
+          style={style.image}
+        />
       </TouchableOpacity>
+      {selectedImage ? (
+        <TouchableOpacity onPress={openShareDialog} style={style.button}>
+          <Text style={style.buttonText}>Share this image</Text>
+        </TouchableOpacity>
+      ) : (
+        <View />
+      )}
     </View>
   );
 };
