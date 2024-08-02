@@ -6,9 +6,11 @@ import {
   Image,
   TouchableOpacity,
   Alert,
+  Platform,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
 import * as Sharing from "expo-sharing";
+import uploadToAnonymousFilesAsync from "anonymous-files";
 
 const App = () => {
   const [selectedImage, setSelectedImage] = useState(null);
@@ -27,12 +29,21 @@ const App = () => {
       return;
     }
 
-    setSelectedImage({ localUri: pickerResult.assets[0].uri });
+    if (Platform.OS === "web") {
+      const remoteUri = await uploadToAnonymousFilesAsync(
+        pickerResult.assets[0].uri
+      );
+      setSelectedImage({ localUri: pickerResult.assets[0].uri, remoteUri });
+    } else {
+      setSelectedImage({ localUri: pickerResult.assets[0].uri });
+    }
   };
 
   const openShareDialog = async () => {
     if (!(await Sharing.isAvailableAsync())) {
-      alert("Sharing is not available on your platform");
+      alert(
+        `The image is available for sharing at: ${selectedImage.remoteUri}`
+      );
       return;
     }
 
