@@ -1,5 +1,12 @@
 import React from "react";
-import { Text, View, StyleSheet, Image } from "react-native";
+import {
+  Text,
+  View,
+  StyleSheet,
+  Image,
+  TouchableOpacity,
+  Alert,
+} from "react-native";
 
 const App = () => {
   return (
@@ -11,6 +18,12 @@ const App = () => {
         }}
         style={style.image}
       />
+      <TouchableOpacity
+        onPress={() => Alert.alert("Hello!!!")}
+        style={style.button}
+      >
+        <Text style={style.buttonText}>Press Me</Text>
+      </TouchableOpacity>
     </View>
   );
 };
@@ -24,6 +37,8 @@ const style = StyleSheet.create({
   },
   title: { fontSize: 30, color: "#fff" },
   image: { height: 200, width: 200, borderRadius: 100 },
+  button: { backgroundColor: "blue", padding: 7, marginTop: 10 },
+  buttonText: { color: "#fff", fontSize: 20 },
 });
 
 export default App;
