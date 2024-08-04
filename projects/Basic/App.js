@@ -2,10 +2,10 @@ import React, { useState } from "react";
 import {
   Text,
   View,
-  StyleSheet,
   Image,
-  TouchableOpacity,
+  StyleSheet,
   Alert,
+  TouchableOpacity,
   Platform,
 } from "react-native";
 import * as ImagePicker from "expo-image-picker";
