@@ -4,7 +4,6 @@ import {
   View,
   Image,
   StyleSheet,
-  Alert,
   TouchableOpacity,
   Platform,
 } from "react-native";
