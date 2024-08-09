@@ -1,5 +1,12 @@
 import { StatusBar } from "expo-status-bar";
-import { StyleSheet, Text, View, Image, Button } from "react-native";
+import {
+  StyleSheet,
+  Text,
+  View,
+  Image,
+  Button,
+  TouchableHighlight,
+} from "react-native";
 
 export default function App() {
   return (
@@ -13,6 +20,20 @@ export default function App() {
       />
       <Text style={{ color: "white" }}>Tenemos aqui la app!</Text>
       <Button title="Pulsa Aqui" onPress={() => alert("Hola")} />
+      <TouchableHighlight
+        underlayColor={"#09f"}
+        onPress={() => alert("Hola")}
+        style={{
+          width: 200,
+          height: 200,
+          backgroundColor: "red",
+          borderRadius: 100,
+          justifyContent: "center",
+          alignItems: "center",
+        }}
+      >
+        <Text style={{ color: "white" }}>Pulsa Aqui</Text>
+      </TouchableHighlight>
     </View>
   );
 }
