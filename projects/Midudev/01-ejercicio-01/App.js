@@ -4,13 +4,13 @@ import { StyleSheet, Text, View, Image } from "react-native";
 export default function App() {
   return (
     <View style={styles.container}>
+      <StatusBar style="light" />
       <Image
         source={{
           uri: "https://www.metacritic.com/a/img/catalog/provider/6/3/6-1-4763-13.jpg",
         }}
         style={{ width: 215, height: 294 }}
       />
-      <StatusBar style="auto" />
       <Text style={{ color: "white" }}>Tenemos aqui la app!</Text>
     </View>
   );
