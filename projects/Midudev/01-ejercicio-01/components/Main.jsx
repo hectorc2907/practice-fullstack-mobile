@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react";
-import { StyleSheet, Text, View, ScrollView, Image } from "react-native";
+import { View, ScrollView, ActivityIndicator } from "react-native";
 import { getLatestGames } from "../lib/metacritic";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { GameCard } from "./GameCard";
@@ -15,11 +15,19 @@ export function Main() {
   }, []);
   return (
     <View style={{ paddingTop: insets.top, paddingBottom: insets.bottom }}>
-      <ScrollView>
-        {games.map((game) => (
-          <GameCard key={game.slug} game={game} />
-        ))}
-      </ScrollView>
+      {games.length === 0 ? (
+        <View
+          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
+        >
+          <ActivityIndicator />
+        </View>
+      ) : (
+        <ScrollView>
+          {games.map((game) => (
+            <GameCard key={game.slug} game={game} />
+          ))}
+        </ScrollView>
+      )}
     </View>
   );
 }
