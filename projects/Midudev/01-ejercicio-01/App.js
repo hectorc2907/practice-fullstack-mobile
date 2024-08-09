@@ -6,34 +6,26 @@ import {
   Image,
   Button,
   TouchableHighlight,
+  Pressable,
 } from "react-native";
 
 export default function App() {
   return (
     <View style={styles.container}>
       <StatusBar style="light" />
-      <Image
-        source={{
-          uri: "https://www.metacritic.com/a/img/catalog/provider/6/3/6-1-4763-13.jpg",
-        }}
-        style={{ width: 215, height: 294 }}
-      />
-      <Text style={{ color: "white" }}>Tenemos aqui la app!</Text>
-      <Button title="Pulsa Aqui" onPress={() => alert("Hola")} />
-      <TouchableHighlight
-        underlayColor={"#09f"}
-        onPress={() => alert("Hola")}
-        style={{
-          width: 200,
-          height: 200,
-          backgroundColor: "red",
-          borderRadius: 100,
-          justifyContent: "center",
-          alignItems: "center",
-        }}
+      <Pressable
+        onPress={() => {}}
+        style={({ pressed }) => [
+          { backgroundColor: pressed ? "rgb(210,230,255)" : "white" },
+          styles.wrapperCustom,
+        ]}
       >
-        <Text style={{ color: "white" }}>Pulsa Aqui</Text>
-      </TouchableHighlight>
+        {({ pressed }) => (
+          <Text style={{ fontSize: pressed ? 32 : 16 }}>
+            {pressed ? "Pressed!" : "Press Me"}
+          </Text>
+        )}
+      </Pressable>
     </View>
   );
 }
