@@ -19,8 +19,8 @@ export default function App() {
           <View key={game.slug} style={styles.card}>
             <Image source={{ uri: game.image }} style={styles.image} />
             <Text style={styles.title}>{game.title}</Text>
-            <Text style={styles.description}>{game.description}</Text>
             <Text style={styles.score}>{game.score}</Text>
+            <Text style={styles.description}>{game.description}</Text>
           </View>
         ))}
       </ScrollView>
@@ -35,12 +35,12 @@ const styles = StyleSheet.create({
     alignItems: "center",
     justifyContent: "center",
   },
-  card: { marginBottom: 10 },
+  card: { marginBottom: 42 },
   image: { width: 107, height: 147, borderRadius: 10 },
   title: {
     fontSize: 20,
     fontWeight: "bold",
-    marginBottom: 10,
+    marginTop: 10,
     color: "#fff",
   },
   description: {
@@ -51,6 +51,6 @@ const styles = StyleSheet.create({
     fontSize: 20,
     fontWeight: "bold",
     color: "green",
-    marginTop: "10",
+    marginBottom: "10",
   },
 });
