@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { FlatList, View, ScrollView, ActivityIndicator } from "react-native";
 import { getLatestGames } from "../lib/metacritic";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import { GameCard } from "./GameCard";
+import { AnimatedGameCard } from "./GameCard";
 import { Logo } from "./Logo";
 
 export function Main() {
@@ -20,16 +20,14 @@ export function Main() {
         <Logo />
       </View>
       {games.length === 0 ? (
-        <View
-          style={{ flex: 1, justifyContent: "center", alignItems: "center" }}
-        >
-          <ActivityIndicator />
-        </View>
+        <ActivityIndicator />
       ) : (
         <FlatList
           data={games}
           keyExtractor={(game) => game.slug}
-          renderItem={({ item }) => <GameCard game={item} />}
+          renderItem={({ item, index }) => (
+            <AnimatedGameCard game={item} index={index} />
+          )}
         />
       )}
     </View>
